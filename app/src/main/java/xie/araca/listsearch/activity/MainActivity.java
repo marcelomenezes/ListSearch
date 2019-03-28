@@ -12,7 +12,8 @@ import xie.araca.listsearch.R;
 import xie.araca.listsearch.fragment.ItemListFragment;
 
 public class MainActivity extends AppCompatActivity implements
-        SearchView.OnQueryTextListener {
+        SearchView.OnQueryTextListener,
+        MenuItemCompat.OnActionExpandListener{
 
     private FragmentManager mfragmentManager;
     private ItemListFragment mListFragment;
@@ -35,8 +36,8 @@ public class MainActivity extends AppCompatActivity implements
         getMenuInflater().inflate(R.menu.main, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) searchItem.getActionView();
-        //searchView.setOnQueryTextListener(this);
-        //searchView.setQueryHint("Pesquisar");
+        searchView.setOnQueryTextListener(this);
+        searchView.setQueryHint("Pesquisar");
         return true;
     }
 
@@ -67,5 +68,16 @@ public class MainActivity extends AppCompatActivity implements
         mListFragment.search(s);
         return false;
     }
+
+    @Override
+    public boolean onMenuItemActionExpand(MenuItem item) {
+        return true; // para expandir a view
+    }
+    @Override
+    public boolean onMenuItemActionCollapse(MenuItem item) {
+        mListFragment.clearSearch();
+        return true; // para voltar ao normal
+    }
+
 
 }

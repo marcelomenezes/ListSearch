@@ -59,7 +59,7 @@ public class ItemListFragment extends ListFragment {
             clearSearch();
             return;
         }
-        List<Item> itemFound = new ArrayList<Item>(mItems);
+        List<Item> itemFound = new ArrayList<>(mItems);
 
         for (int i = itemFound.size()-1; i >= 0; i--){
             Item item = itemFound.get(i);
